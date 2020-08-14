@@ -1,12 +1,16 @@
-export function GetMoviesList(){
+import { MOVIES_LIST } from './../types';
+import axios from 'axios'
+
+export function getMoviesList(){
     // Goto database to get data
+
+    const request = axios.get('https://jsonplaceholder.typicode.com/posts')
+                    .then( response => (
+                         response.data
+                    ));
 
     return {
         type: 'MOVIES_LIST',
-        payload: [
-            { id:12, name:'Lord of the Rings'},
-            { id:59, name:'Matrix'},
-            { id:155, name:'The Godfather'},
-        ]
+        payload: request,
     }
 }
